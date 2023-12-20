@@ -1,7 +1,7 @@
 # client.py
 import trio
 
-async def process_data():
+async def process_data(): #We create the client which request data from server
     try:
         stream = await trio.open_tcp_stream("localhost", 8765)
         async with stream:
@@ -9,7 +9,7 @@ async def process_data():
                 response = await stream.receive_some(4096)
                 if not response:
                     break
-                print(f"Received from server: {response.decode('utf-8')}")
+                print(f"Received from server: {response.decode('utf-8')}") #We print the data we take from server.(String)
     except trio.ClosedResourceError:
         print("Server closed the connection")
 
